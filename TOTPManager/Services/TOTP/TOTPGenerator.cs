@@ -8,7 +8,6 @@ namespace TOTP.Services.TOTP
 	{
         private readonly byte[] _secret;
         private readonly Algorithm _algorithm;
-
         private readonly DateTime unixEpoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
         public readonly int Digits;
