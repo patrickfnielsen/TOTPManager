@@ -83,7 +83,6 @@
     <Compile Include="Services\Accounts\AccountEventArgs.cs" />
     <Compile Include="Services\Accounts\IAccountService.cs" />
     <Compile Include="Services\TOTP\TOTPGenerator.cs" />
-    <Compile Include="Services\TOTP\TOTPHasher.cs" />
     <Compile Include="ViewModelLocator.cs" />
     <Compile Include="ViewModels\AccountsViewModel.cs" />
     <Compile Include="ViewModels\NewAccountViewModel.cs" />
