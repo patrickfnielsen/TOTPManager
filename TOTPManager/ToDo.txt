@@ -1,0 +1,4 @@
+﻿* Settings dialog
+
+//_accountService.Add("Danish Crown", Base32.ToBytes("QKHSFJLZXNDENMGZLTPUGP6AKXPEZ37I"));
+//_accountService.Add("Google", Base32.ToBytes("QKHSFJLZXNDENMGZLTPUGP6A4XPEZ37I"));

@@ -1,0 +1,28 @@
+﻿<Window x:Class="TOTPManager.Views.NewAccountWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:helper="clr-namespace:TOTPManager.Helpers"
+        xmlns:m="clr-namespace:TOTPManager.Models"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterOwner"
+        x:Name="AccountWindow"
+        Title="Add Account" Height="300" Width="300">
+
+    <StackPanel Margin="10" DataContext="{Binding NewAccountViewModel, Source={StaticResource Locator}}">
+        <Label Content="Account Name" Padding="0,5,0,2"/>
+        <TextBox Text="{Binding AccountName, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Label Content="Secret" Padding="0,5,0,2"/>
+        <TextBox Text="{Binding Secret, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Label Content="Digits" Padding="0,5,0,2"/>
+        <TextBox Text="{Binding Digits, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Label Content="Algorithm" Padding="0,5,0,2"/>
+        <ComboBox SelectedValuePath="DisplayName" DisplayMemberPath="DisplayName" ItemsSource="{helper:EnumToItemsSource {x:Type m:Algorithm}}" SelectedValue="{Binding Algorithm, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Button Command="{Binding SaveAccount}" CommandParameter="{Binding ElementName=AccountWindow}" Content="Save" Width="80" Margin="0,10,0,0"/>
+    </StackPanel>
+</Window>

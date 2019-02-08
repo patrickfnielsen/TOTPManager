@@ -1,0 +1,23 @@
+﻿<Application xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:TOTPManager"
+             xmlns:view="clr-namespace:TOTPManager.Views"
+             ShutdownMode="OnExplicitShutdown"
+             x:Class="TOTPManager.App">
+    <Application.Resources>
+        <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:tb="http://www.hardcodet.net/taskbar">
+            <local:ViewModelLocator x:Key="Locator"/>
+
+            <view:PopupCodes x:Key="PopupCodes" />
+
+            <tb:TaskbarIcon x:Key="MFAIcon" IconSource="/key.ico" NoLeftClickDelay="True" ToolTipText="Two Factor Manager" TrayPopup="{StaticResource PopupCodes}">
+                <tb:TaskbarIcon.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Settings" Click="SettingsClick" />
+                        <MenuItem Header="Exit" Click="ExitClick" />
+                    </ContextMenu>
+                </tb:TaskbarIcon.ContextMenu>
+            </tb:TaskbarIcon>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
