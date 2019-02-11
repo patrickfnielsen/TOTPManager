@@ -1,5 +1,4 @@
-﻿using Framework.View;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 using TOTPManager.Models;
 using TOTPManager.Services.Accounts;

@@ -38,9 +38,6 @@
     <ApplicationIcon>key.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Framework.View">
-      <HintPath>..\..\NetGUI\NetGUI.ConfGui\bin\Debug\Framework.View.dll</HintPath>
-    </Reference>
     <Reference Include="Hardcodet.Wpf.TaskbarNotification, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Hardcodet.NotifyIcon.Wpf.1.0.8\lib\net451\Hardcodet.Wpf.TaskbarNotification.dll</HintPath>
     </Reference>
@@ -70,6 +67,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="NotifyBase.cs" />
+    <Compile Include="SimpleDelegateCommand.cs" />
     <Compile Include="Views\Converters\EmptyToInvisibleConverter.cs" />
     <Compile Include="Services\Encryption\ITextEncryption.cs" />
     <Compile Include="Services\Encryption\WindowTextEncryption.cs" />

@@ -14,7 +14,7 @@ namespace TOTPManager.Services.Accounts
         private readonly ITextEncryption _textEncryption;
         private string persistPath => $"{Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "TOTPManager")}";
         private const string persistFile = "accounts.db";
-        private readonly List<Account> Accounts = new List<Account>();
+        private readonly List<Account> _accounts = new List<Account>();
 
         public event EventHandler<AccountEventArgs> AccountAdded;
         public event EventHandler<AccountEventArgs> AccountRemoved;
@@ -28,7 +28,7 @@ namespace TOTPManager.Services.Accounts
         public void Add(string displayName, byte[] secret)
         {
             var account = new Account(displayName, secret);
-            Accounts.Add(account);
+            _accounts.Add(account);
             PersistData();
 
             AccountAdded?.Invoke(this, new AccountEventArgs(account));
@@ -36,21 +36,21 @@ namespace TOTPManager.Services.Accounts
 
         public IEnumerable<Account> GetAll()
         {
-            return Accounts;
+            return _accounts;
         }
 
         public Account GetById(Guid Id)
         {
-            var account = Accounts.Single(x => x.Id == Id);
+            var account = _accounts.Single(x => x.Id == Id);
 
             return account;
         }
 
         public void Remove(Guid Id)
         {
-            var account = Accounts.Single(x => x.Id == Id);
+            var account = _accounts.Single(x => x.Id == Id);
 
-            Accounts.Remove(account);
+            _accounts.Remove(account);
 
             PersistData();
 
@@ -64,7 +64,7 @@ namespace TOTPManager.Services.Accounts
             {
                 ContractResolver = new TypeOnlyContractResolver<Account>()
             };
-            var jsonData = JsonConvert.SerializeObject(Accounts, jsonSettings);
+            var jsonData = JsonConvert.SerializeObject(_accounts, jsonSettings);
 
             Directory.CreateDirectory(persistPath);
 
@@ -83,7 +83,7 @@ namespace TOTPManager.Services.Accounts
 
             foreach(var account in accounts)
             {
-                Accounts.Add(account);
+                _accounts.Add(account);
             }
         }
     }

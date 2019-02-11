@@ -16,11 +16,9 @@ namespace TOTPManager.Services.Startup
 
         public bool RunOnStartup()
         {
-            RegistryKey rk;
-            
             try
             {
-                rk = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
+                var rk = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
                 rk.SetValue(_appTitle, _appPath);
             }
             catch (Exception)
@@ -32,11 +30,9 @@ namespace TOTPManager.Services.Startup
 
         public bool RemoveFromStartup()
         {
-            RegistryKey rk;
-
             try
             {
-                rk = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
+                var rk = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
                 if (_appPath == null)
                 {
                     rk.DeleteValue(_appTitle);
@@ -59,25 +55,16 @@ namespace TOTPManager.Services.Startup
 
         public bool IsInStartup()
         {
-            RegistryKey rk;
-            string value;
-
             try
             {
-                rk = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
-                value = rk.GetValue(_appTitle).ToString();
-                if (value == null)
+                var rk = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
+                var value = rk.GetValue(_appTitle).ToString();
+                if (!value.ToLower().Equals(_appPath.ToLower()))
                 {
                     return false;
                 }
-                else if (!value.ToLower().Equals(_appPath.ToLower()))
-                {
-                    return false;
-                }
-                else
-                {
-                    return true;
-                }
+
+                return true;
             }
             catch (Exception)
             {

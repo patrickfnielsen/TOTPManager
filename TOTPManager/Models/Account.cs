@@ -1,5 +1,4 @@
-﻿using Framework.View;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 
 namespace TOTPManager.Models

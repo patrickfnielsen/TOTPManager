@@ -8,12 +8,12 @@ namespace TOTPManager.Helpers
         {
             if (string.IsNullOrEmpty(input))
             {
-                throw new ArgumentNullException("input");
+                throw new ArgumentNullException(nameof(input));
             }
 
             input = input.TrimEnd('='); //remove padding characters
-            int byteCount = input.Length * 5 / 8; //this must be TRUNCATED
-            byte[] returnArray = new byte[byteCount];
+            var byteCount = input.Length * 5 / 8; //this must be TRUNCATED
+            var returnArray = new byte[byteCount];
 
             byte curByte = 0, bitsRemaining = 8;
             int mask = 0, arrayIndex = 0;
@@ -51,7 +51,7 @@ namespace TOTPManager.Helpers
         {
             if (input == null || input.Length == 0)
             {
-                throw new ArgumentNullException("input");
+                throw new ArgumentNullException(nameof(input));
             }
 
             int charCount = (int)Math.Ceiling(input.Length / 5d) * 8;

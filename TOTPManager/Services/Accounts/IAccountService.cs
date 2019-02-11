@@ -8,11 +8,11 @@ namespace TOTPManager.Services.Accounts
     {
         IEnumerable<Account> GetAll();
 
-        Account GetById(Guid Id);
+        Account GetById(Guid id);
 
         void Add(string displayName, byte[] secret);
 
-        void Remove(Guid Id);
+        void Remove(Guid id);
 
         event EventHandler<AccountEventArgs> AccountAdded;
         event EventHandler<AccountEventArgs> AccountRemoved;

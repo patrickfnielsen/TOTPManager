@@ -1,5 +1,4 @@
-﻿using Framework.View;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using TOTPManager.Services.Startup;
 
 namespace TOTPManager.ViewModels
@@ -27,7 +26,7 @@ namespace TOTPManager.ViewModels
 
         private void ChangeStartupSetting(bool value)
         {
-            if (value == true && !_startup.IsInStartup())
+            if (value && !_startup.IsInStartup())
             {
                 _startup.RunOnStartup();
             }

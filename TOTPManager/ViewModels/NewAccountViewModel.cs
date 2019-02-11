@@ -1,5 +1,4 @@
-﻿using Framework.View;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using TOTPManager.Helpers;
 using TOTPManager.Interfaces;
 using TOTPManager.Models;
@@ -27,10 +26,7 @@ namespace TOTPManager.ViewModels
 
         private void CloseWindow(IClosable window)
         {
-            if (window != null)
-            {
-                window.Close();
-            }
+            window?.Close();
         }
 
         private string _accountName;

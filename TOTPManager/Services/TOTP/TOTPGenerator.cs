@@ -2,17 +2,17 @@
 using System.Security.Cryptography;
 using TOTPManager.Models;
 
-namespace TOTP.Services.TOTP
+namespace TOTPManager.Services.TOTP
 {
 	public class TOTPGenerator
 	{
         private readonly byte[] _secret;
         private readonly Algorithm _algorithm;
-        private readonly DateTime unixEpoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+        private readonly DateTime _unixEpoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
         public readonly int Digits;
         public readonly double Period;
-        public double TimeLeft => Period - (int)(DateTime.UtcNow.Subtract(unixEpoch).TotalSeconds % Period);
+        public double TimeLeft => Period - (int)(DateTime.UtcNow.Subtract(_unixEpoch).TotalSeconds % Period);
 
         public TOTPGenerator(byte[] secret, int digits, int period, Algorithm algorithm)
         {
@@ -60,7 +60,7 @@ namespace TOTP.Services.TOTP
 
         private long GetCurrentCounter()
         {
-            return (long)(DateTime.UtcNow - unixEpoch).TotalSeconds / (long)Period;
+            return (long)(DateTime.UtcNow - _unixEpoch).TotalSeconds / (long)Period;
         }
 
         private static HMAC GetAlgorithm(Algorithm algorithm, byte[] secretBytes)

@@ -5,7 +5,7 @@ namespace TOTPManager.Services.Accounts
 {
     public class AccountEventArgs : EventArgs
     {
-        public Account Account { get; set; }
+        public Account Account { get; }
 
         public AccountEventArgs(Account account)
         {
