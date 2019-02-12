@@ -19,7 +19,7 @@ namespace TOTPManager.Services.Startup
             try
             {
                 var rk = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
-                rk.SetValue(_appTitle, _appPath);
+                rk?.SetValue(_appTitle, _appPath);
             }
             catch (Exception)
             {
@@ -35,13 +35,13 @@ namespace TOTPManager.Services.Startup
                 var rk = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
                 if (_appPath == null)
                 {
-                    rk.DeleteValue(_appTitle);
+                    rk?.DeleteValue(_appTitle);
                 }
                 else
                 {
-                    if (rk.GetValue(_appTitle).ToString().ToLower() == _appPath.ToLower())
+                    if (rk?.GetValue(_appTitle).ToString().ToLower() == _appPath.ToLower())
                     {
-                        rk.DeleteValue(_appTitle);
+                        rk?.DeleteValue(_appTitle);
                     }
                 }
             }
@@ -59,12 +59,7 @@ namespace TOTPManager.Services.Startup
             {
                 var rk = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true);
                 var value = rk.GetValue(_appTitle).ToString();
-                if (!value.ToLower().Equals(_appPath.ToLower()))
-                {
-                    return false;
-                }
-
-                return true;
+                return value.ToLower().Equals(_appPath.ToLower());
             }
             catch (Exception)
             {
