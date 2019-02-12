@@ -26,7 +26,9 @@
         </TabItem>
         <TabItem Header="Settings" DataContext="{Binding SettingsViewModel, Source={StaticResource Locator}}">
             <StackPanel Margin="10">
-                <CheckBox Content="Start with windows" IsChecked="{Binding RunOnStartup}"/>
+                <GroupBox Header="General Settings" Padding="6">
+                    <CheckBox Content="Start with windows" IsChecked="{Binding RunOnStartup}"/>
+                </GroupBox>
             </StackPanel>
         </TabItem>
     </TabControl>
