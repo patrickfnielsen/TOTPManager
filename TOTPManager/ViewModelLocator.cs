@@ -23,7 +23,7 @@ namespace TOTPManager
 
         private IWindowManager _windowManager { get; }
 
-        public MainViewModel MainViewModel => new MainViewModel(_accountService);
+        public PopupViewModel PopupViewModel => new PopupViewModel(_accountService);
 
         public AccountsViewModel AccountsViewModel => new AccountsViewModel(_accountService, _windowManager);
 

@@ -108,7 +108,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Models\Account.cs" />
-    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\PopupViewModel.cs" />
     <Compile Include="Views\Controls\CircleProgressBar.xaml.cs">
       <DependentUpon>CircleProgressBar.xaml</DependentUpon>
     </Compile>

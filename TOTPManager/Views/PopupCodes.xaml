@@ -27,7 +27,7 @@
         </Style>
     </UserControl.Resources>
 
-    <StackPanel DataContext="{Binding MainViewModel, Source={StaticResource Locator}}" Width="300" Margin="0,0,0,20" Background="White">
+    <StackPanel DataContext="{Binding PopupViewModel, Source={StaticResource Locator}}" Width="300" Margin="0,0,0,20" Background="White">
         <ListBox ItemsSource="{Binding Accounts}" Margin="0" Padding="0" BorderThickness="0">
             <ListBox.ItemTemplate>
                 <DataTemplate>
@@ -61,8 +61,8 @@
             </ListBox.ItemContainerStyle>
         </ListBox>
         <StackPanel Visibility="{Binding Accounts.Count, Converter={StaticResource NullToInvisibleConverter}, UpdateSourceTrigger=PropertyChanged}" Margin="20">
-            <TextBlock Text="No accounts found!" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FF292929" FontSize="18" FontFamily="Segoe UI Semibold"/>
-            <TextBlock Text="Please right click on the icon and press 'Settings' to add a new account." TextWrapping="Wrap"  HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FF292929" FontSize="16" FontFamily="Segoe UI"/>
+            <TextBlock Text="No accounts found!" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FF292929" FontSize="16" FontFamily="Segoe UI Semibold"/>
+            <TextBlock Text="Please right click on the icon and press 'Settings' to add a new account." TextWrapping="Wrap"  HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="#FF292929" FontSize="14" FontFamily="Segoe UI"/>
         </StackPanel>
     </StackPanel>
 </UserControl>

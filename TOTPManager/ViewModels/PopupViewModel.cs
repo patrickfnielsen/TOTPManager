@@ -8,14 +8,14 @@ using TOTPManager.Services.TOTP;
 
 namespace TOTPManager.ViewModels
 {
-    public class MainViewModel : NotifyBase
+    public class PopupViewModel : NotifyBase
     {
         private readonly DispatcherTimer _dispatcherTimer = new DispatcherTimer { Interval = new TimeSpan(0, 0, 0, 1) };
 
         private readonly IAccountService _accountService;
         private readonly Dictionary<Guid, TOTPGenerator> _generators = new Dictionary<Guid, TOTPGenerator>();
 
-        public MainViewModel(IAccountService accountService)
+        public PopupViewModel(IAccountService accountService)
         {
             _accountService = accountService;
             _accountService.AccountAdded += AccountAdded;
