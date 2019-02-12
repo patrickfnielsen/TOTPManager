@@ -2,17 +2,19 @@
 using System.Windows.Input;
 using TOTPManager.Models;
 using TOTPManager.Services.Accounts;
-using TOTPManager.Views;
+using TOTPManager.Services.Windows;
 
 namespace TOTPManager.ViewModels
 {
     public class AccountsViewModel : NotifyBase
     {
         private readonly IAccountService _accountService;
+        private readonly IWindowManager _windowManager;
 
-        public AccountsViewModel(IAccountService accountService)
+        public AccountsViewModel(IAccountService accountService, IWindowManager windowManager)
         {
             _accountService = accountService;
+            _windowManager = windowManager;
 
             Accounts = new ObservableCollection<Account>(_accountService.GetAll());
 
@@ -32,9 +34,7 @@ namespace TOTPManager.ViewModels
 
         public ICommand NewAccount => new SimpleDelegateCommand((obj) =>
         {
-            //ToDo: Refactor
-            var window = new NewAccountWindow();
-            window.ShowDialog();
+            _windowManager.ShowDialog(new NewAccountViewModel(_accountService));
         });
 
         public ICommand EditAccount => new SimpleDelegateCommand((obj) =>

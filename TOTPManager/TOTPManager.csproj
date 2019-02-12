@@ -68,6 +68,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="NotifyBase.cs" />
+    <Compile Include="Services\Windows\IWindowFactory.cs" />
+    <Compile Include="Services\Windows\IWindowManager.cs" />
+    <Compile Include="Services\Windows\WindowFactory.cs" />
+    <Compile Include="Services\Windows\WindowManager.cs" />
     <Compile Include="SimpleDelegateCommand.cs" />
     <Compile Include="Views\Converters\EmptyToInvisibleConverter.cs" />
     <Compile Include="Services\Encryption\ITextEncryption.cs" />
@@ -148,9 +152,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\Windows\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="key.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

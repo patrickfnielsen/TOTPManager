@@ -55,11 +55,10 @@ namespace TOTPManager.ViewModels
         private TOTPGenerator GetKeyGeneratorForAccount(Account account)
         {
             var containsGenerator = _generators.TryGetValue(account.Id, out var generator);
-            if (!containsGenerator)
-            {
-                generator = new TOTPGenerator(account.Secret, account.Digits, 30, account.Algorithm);
-                _generators.Add(account.Id, generator);
-            }
+            if (containsGenerator) return generator;
+
+            generator = new TOTPGenerator(account.Secret, account.Digits, 30, account.Algorithm);
+            _generators.Add(account.Id, generator);
 
             return generator;
         }
