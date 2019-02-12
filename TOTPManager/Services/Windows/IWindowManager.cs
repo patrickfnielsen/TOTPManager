@@ -1,6 +1,4 @@
-﻿using Framework.View;
-
-namespace TOTPManager.Services.Windows
+﻿namespace TOTPManager.Services.Windows
 {
     public interface IWindowManager
     {
