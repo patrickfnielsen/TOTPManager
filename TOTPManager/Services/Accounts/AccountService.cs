@@ -6,12 +6,16 @@ using Newtonsoft.Json;
 using System.IO;
 using TOTPManager.Helpers;
 using TOTPManager.Services.Encryption;
+using TOTPManager.Services.Storage;
 
 namespace TOTPManager.Services.Accounts
 {
     public class AccountService : IAccountService
     {
         private readonly ITextEncryption _textEncryption;
+        private readonly IFile _file;
+        private readonly IDirectory _directory;
+
         private string persistPath => $"{Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "TOTPManager")}";
         private const string persistFile = "accounts.db";
         private readonly List<Account> _accounts = new List<Account>();
@@ -19,9 +23,12 @@ namespace TOTPManager.Services.Accounts
         public event EventHandler<AccountEventArgs> AccountAdded;
         public event EventHandler<AccountEventArgs> AccountRemoved;
 
-        public AccountService(ITextEncryption textEncryption)
+        public AccountService(ITextEncryption textEncryption, IFile file, IDirectory directory)
         {
             _textEncryption = textEncryption;
+            _file = file;
+            _directory = directory;
+
             LoadData();
         }
 
@@ -39,16 +46,16 @@ namespace TOTPManager.Services.Accounts
             return _accounts;
         }
 
-        public Account GetById(Guid Id)
+        public Account GetById(Guid id)
         {
-            var account = _accounts.Single(x => x.Id == Id);
+            var account = _accounts.Single(x => x.Id == id);
 
             return account;
         }
 
-        public void Remove(Guid Id)
+        public void Remove(Guid id)
         {
-            var account = _accounts.Single(x => x.Id == Id);
+            var account = _accounts.Single(x => x.Id == id);
 
             _accounts.Remove(account);
 
@@ -66,17 +73,17 @@ namespace TOTPManager.Services.Accounts
             };
             var jsonData = JsonConvert.SerializeObject(_accounts, jsonSettings);
 
-            Directory.CreateDirectory(persistPath);
+            _directory.CreateDirectory(persistPath);
 
             var protectedData = _textEncryption.Encrypt(jsonData);
-            File.WriteAllBytes(persistPath + "\\" + persistFile, protectedData);
+            _file.WriteAllBytes(persistPath + "\\" + persistFile, protectedData);
         }
 
         private void LoadData()
         {
-            if (!File.Exists(persistPath + "\\" + persistFile)) return;
+            if (!_file.Exists(persistPath + "\\" + persistFile)) return;
 
-            var protectedData = File.ReadAllBytes(persistPath + "\\" + persistFile);
+            var protectedData = _file.ReadAllBytes(persistPath + "\\" + persistFile);
             var jsonData = _textEncryption.Decrypt(protectedData);
 
             var accounts = JsonConvert.DeserializeObject<IEnumerable<Account>>(jsonData);
