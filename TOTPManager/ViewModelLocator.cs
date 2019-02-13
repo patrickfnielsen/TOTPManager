@@ -11,13 +11,20 @@ namespace TOTPManager
     {
         public ViewModelLocator()
         {
+            _fileManager = new FileStorage();
+            _directoryManager = new DirectoryStorage();
+            _settingsManager = new SettingsManager(_fileManager);
             _textEncryption = new WindowTextEncryption();
-            _accountService = new AccountService(_textEncryption);
+            _accountService = new AccountService(_textEncryption, _fileManager, _directoryManager);
             _windowFactory = new WindowFactory();
             _windowManager = new WindowManager(_windowFactory);
-            _fileManager = new FileStorage();
-            _settingsManager = new SettingsManager(_fileManager);
         }
+
+        private IFile _fileManager { get; }
+
+        private IDirectory _directoryManager { get; }
+
+        private ISettings _settingsManager { get; }
 
         private ITextEncryption _textEncryption { get; }
 
@@ -27,9 +34,6 @@ namespace TOTPManager
 
         private IWindowManager _windowManager { get; }
 
-        private IFile _fileManager { get; }
-
-        private ISettings _settingsManager { get; }
 
         public PopupViewModel PopupViewModel => new PopupViewModel(_accountService);
 
