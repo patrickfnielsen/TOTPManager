@@ -17,7 +17,7 @@ namespace TOTPManager.Services.Settings
         public void Save(AppSettings settings)
         {
             var json = JsonConvert.SerializeObject(settings);
-            _file.Save($@"{_file.TempFolder}\{FileName}", json);
+            _file.WriteAllText($@"{_file.TempFolder}\{FileName}", json);
         }
 
         public AppSettings Load()

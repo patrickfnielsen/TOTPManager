@@ -71,6 +71,8 @@
     <Compile Include="Models\AppSettings.cs" />
     <Compile Include="Services\Settings\ISettings.cs" />
     <Compile Include="Services\Settings\SettingsManager.cs" />
+    <Compile Include="Services\Storage\DirectoryStorage.cs" />
+    <Compile Include="Services\Storage\IDirectory.cs" />
     <Compile Include="Services\Storage\IFile.cs" />
     <Compile Include="Services\Storage\FileStorage.cs" />
     <Compile Include="Services\Windows\IWindowFactory.cs" />
