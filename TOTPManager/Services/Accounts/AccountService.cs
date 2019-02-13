@@ -62,7 +62,6 @@ namespace TOTPManager.Services.Accounts
             PersistData();
 
             AccountRemoved?.Invoke(this, new AccountEventArgs(account));
-
         }
 
         private void PersistData()
