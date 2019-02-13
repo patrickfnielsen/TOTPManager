@@ -68,6 +68,11 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="NotifyBase.cs" />
+    <Compile Include="Models\AppSettings.cs" />
+    <Compile Include="Services\Settings\ISettings.cs" />
+    <Compile Include="Services\Settings\SettingsManager.cs" />
+    <Compile Include="Services\Storage\IFile.cs" />
+    <Compile Include="Services\Storage\FileStorage.cs" />
     <Compile Include="Services\Windows\IWindowFactory.cs" />
     <Compile Include="Services\Windows\IWindowManager.cs" />
     <Compile Include="Services\Windows\WindowFactory.cs" />
