@@ -1,7 +1,5 @@
 ﻿using System.Diagnostics;
 using System.Windows.Input;
-using TOTPManager.Helpers;
-using TOTPManager.Interfaces;
 using TOTPManager.Models;
 using TOTPManager.Services.Settings;
 using TOTPManager.Services.Startup;
