@@ -20,7 +20,16 @@ namespace TOTPManager.ViewModels
 
             var process = Process.GetCurrentProcess();
             _startup = new Startup("TOTPManager", process.MainModule.FileName);
-            RunOnStartup = _startup.IsInStartup();
+
+            if (_appSettings.RunOnStartup)
+                _startup.RunOnStartup();
+
+            LoadSettings();
+        }
+
+        private void LoadSettings()
+        {
+            RunOnStartup = _appSettings.RunOnStartup;
         }
 
         public ICommand SaveSettings => new SimpleDelegateCommand(obj =>
