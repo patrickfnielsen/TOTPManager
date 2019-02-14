@@ -86,6 +86,28 @@ namespace TOTPManager.Helpers
             return new string(returnArray);
         }
 
+        public static bool IsBase32String(string input)
+        {
+            if (string.IsNullOrEmpty(input))
+            {
+                return false;
+            }
+
+            try
+            {
+                foreach (var ch in input)
+                {
+                    CharToValue(ch);
+                }
+            }
+            catch (ArgumentException)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
         private static int CharToValue(char c)
         {
             var value = (int)c;
@@ -106,7 +128,7 @@ namespace TOTPManager.Helpers
                 return value - 97;
             }
 
-            throw new ArgumentException("Character is not a Base32 character.", "c");
+            throw new ArgumentException("Character is not a Base32 character.", nameof(c));
         }
 
         private static char ValueToChar(byte b)

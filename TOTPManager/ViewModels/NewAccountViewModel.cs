@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Input;
 using TOTPManager.Helpers;
 using TOTPManager.Interfaces;
 using TOTPManager.Models;
@@ -17,15 +18,26 @@ namespace TOTPManager.ViewModels
             Algorithm = Algorithm.SHA1;
         }
 
-        public ICommand SaveAccount => new SimpleDelegateCommand((obj) =>
+        public ICommand SaveAccount => new SimpleDelegateCommand(SaveAccountExecute, SaveAccountCanExecute);
+
+        private void SaveAccountExecute(object obj)
         {
             var bytesSecret = Base32.ToBytes(Secret);
             var account = new Account(AccountName, bytesSecret, Digits, Algorithm);
 
             _accountService.Add(account);
             CloseWindow(obj as IClosable);
-        }, 
-        () => AccountName?.Length > 0 && Secret?.Length > 0);
+        }
+
+        private bool SaveAccountCanExecute()
+        {
+            if (AccountName == null || AccountName?.Length == 0 || Secret == null || Secret?.Length == 0)
+            {
+                return false;
+            }
+
+            return Base32.IsBase32String(Secret);
+        }
 
         private void CloseWindow(IClosable window)
         {
