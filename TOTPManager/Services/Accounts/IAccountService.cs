@@ -10,7 +10,9 @@ namespace TOTPManager.Services.Accounts
 
         Account GetById(Guid id);
 
-        void Add(string displayName, byte[] secret);
+        void Add(Account account);
+
+        void PersistUpdates();
 
         void Remove(Guid id);
 

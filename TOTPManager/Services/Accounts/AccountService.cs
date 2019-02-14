@@ -32,13 +32,17 @@ namespace TOTPManager.Services.Accounts
             LoadData();
         }
 
-        public void Add(string displayName, byte[] secret)
+        public void Add(Account account)
         {
-            var account = new Account(displayName, secret);
             _accounts.Add(account);
             PersistData();
 
             AccountAdded?.Invoke(this, new AccountEventArgs(account));
+        }
+
+        public void PersistUpdates()
+        {
+            PersistData();
         }
 
         public IEnumerable<Account> GetAll()

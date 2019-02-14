@@ -19,7 +19,10 @@ namespace TOTPManager.ViewModels
 
         public ICommand SaveAccount => new SimpleDelegateCommand((obj) =>
         {
-            _accountService.Add(AccountName, Base32.ToBytes(Secret));
+            var bytesSecret = Base32.ToBytes(Secret);
+            var account = new Account(AccountName, bytesSecret, Digits, Algorithm);
+
+            _accountService.Add(account);
             CloseWindow(obj as IClosable);
         }, 
         () => AccountName?.Length > 0 && Secret?.Length > 0);
