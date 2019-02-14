@@ -39,7 +39,7 @@ namespace TOTPManager.ViewModels
 
         public ICommand EditAccount => new SimpleDelegateCommand((obj) =>
         {
-
+            _windowManager.ShowDialog(new RenameAccountViewModel(_accountService, SelectedAccount));
         }, () => SelectedAccount != null);
 
         public ICommand DeleteAccount => new SimpleDelegateCommand((obj) =>

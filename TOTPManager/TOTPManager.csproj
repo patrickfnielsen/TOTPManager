@@ -80,6 +80,7 @@
     <Compile Include="Services\Windows\WindowFactory.cs" />
     <Compile Include="Services\Windows\WindowManager.cs" />
     <Compile Include="SimpleDelegateCommand.cs" />
+    <Compile Include="ViewModels\RenameAccountViewModel.cs" />
     <Compile Include="Views\Converters\EmptyToInvisibleConverter.cs" />
     <Compile Include="Services\Encryption\ITextEncryption.cs" />
     <Compile Include="Services\Encryption\WindowTextEncryption.cs" />
@@ -97,6 +98,9 @@
     <Compile Include="ViewModels\AccountsViewModel.cs" />
     <Compile Include="ViewModels\NewAccountViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
+    <Compile Include="Views\RenameAccountWindow.xaml.cs">
+      <DependentUpon>RenameAccountWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\NewAccountWindow.xaml.cs">
       <DependentUpon>NewAccountWindow.xaml</DependentUpon>
     </Compile>
@@ -119,6 +123,10 @@
     <Compile Include="Views\Controls\CircleProgressBar.xaml.cs">
       <DependentUpon>CircleProgressBar.xaml</DependentUpon>
     </Compile>
+    <Page Include="Views\RenameAccountWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\NewAccountWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

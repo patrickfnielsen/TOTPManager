@@ -10,7 +10,7 @@
         x:Name="AccountWindow"
         Title="Add Account" Height="300" Width="300">
 
-    <StackPanel Margin="10" DataContext="{Binding NewAccountViewModel, Source={StaticResource Locator}}">
+    <StackPanel Margin="10">
         <Label Content="Account Name" Padding="0,5,0,2"/>
         <TextBox Text="{Binding AccountName, UpdateSourceTrigger=PropertyChanged}"/>
 

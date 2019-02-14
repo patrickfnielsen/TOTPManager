@@ -40,8 +40,5 @@ namespace TOTPManager
         public AccountsViewModel AccountsViewModel => new AccountsViewModel(_accountService, _windowManager);
 
         public SettingsViewModel SettingsViewModel => new SettingsViewModel(_settingsManager);
-
-        public NewAccountViewModel NewAccountViewModel => new NewAccountViewModel(_accountService);
-
     }
 }
